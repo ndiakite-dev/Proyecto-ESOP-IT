@@ -1,169 +1,130 @@
-# Proyecto: Dominio ESOP
+# Proyecto ESOP IT
 
-## Índice
+### Implementación de infraestructura IT en centro educativo
 
-1. Hardware
-2. Instalación
-3. Configuración de red
-4. Active Directory Domain Services (AD DS)
-5. Estructura de Active Directory
-   - 5.1 Unidades Organizativas (OU)
-   - 5.2 Grupos de seguridad
-   - 5.3 Usuarios
-6. Directivas de Grupo (GPOs)
-   - 6.1 Default Domain Policy
-   - 6.2 GPO_Alumnes
-   - 6.3 GPO_Prof
-7. Carpetas compartidas en el servidor. Carpeta Public en cada PC
-8. Unión de PCs al dominio
-9. Tareas pendientes
+## Descripción
+
+Proyecto real realizado en Seidor para la renovación completa de la infraestructura informática de un centro educativo.
+
+El proyecto incluyó la creación de un dominio Windows Server desde cero, la implementación de Active Directory, el despliegue masivo de equipos con Windows 11 mediante MDT y WDS, la configuración de políticas de grupo, la gestión centralizada de usuarios y recursos compartidos, y la elaboración de documentación técnica para la continuidad operativa del centro.
 
 ---
 
-## 1. Hardware
+## Objetivos
 
-El servidor de dominio se instaló en el rack del centro:
-
-- **Ubicación:** Rack del aula de servidores
-- **IP fija asignada:** [IP del servidor]
-- **Sistema operativo:** Windows Server 2022
-- **Nombre del servidor:** [NOMBRE-SERVIDOR]
-
----
-
-## 2. Instalación
-
-La ISO se descargó desde la página de Microsoft y la instalación se realizó desde Windows ejecutando `setup.exe`.
-
-Para activarlo se usó el servicio KMS del organismo correspondiente mediante los comandos habituales en `cmd`.
+- Centralizar la gestión de usuarios y equipos.
+- Sustituir equipos antiguos por nuevos dispositivos con Windows 11.
+- Automatizar el despliegue de sistemas operativos.
+- Mejorar la seguridad mediante políticas de grupo.
+- Facilitar el trabajo colaborativo mediante recursos compartidos.
+- Documentar toda la infraestructura para futuros técnicos.
 
 ---
 
-## 3. Configuración de red (servidor)
+## Tecnologías utilizadas
 
-- **IP fija:** [IP del servidor]
-- **Máscara:** [Máscara de red]
-- **Puerta de enlace:** [Puerta de enlace]
-
----
-
-## 4. Active Directory Domain Services (AD DS)
-
-Rol AD DS instalado desde Server Manager. Se promocionó el servidor a Domain Controller creando un nuevo bosque:
-
-- **Nombre del dominio:** [DOMINIO]
-- **Nivel funcional del bosque:** Windows Server 2016
-- **DNS integrado con AD DS** instalado automáticamente
+- Windows Server 2022
+- Active Directory Domain Services (AD DS)
+- DNS
+- Group Policy Objects (GPO)
+- Windows Deployment Services (WDS)
+- Microsoft Deployment Toolkit (MDT)
+- PowerShell
+- Windows 11
+- SMB
+- NTFS Permissions
 
 ---
 
-## 5. Estructura de Active Directory
+## Principales responsabilidades
 
-### 5.1 Unidades Organizativas (OU)
+### Administración de dominio
 
-- OU Alumnes (alumnos del centro)
-- OU Professors (profesores del centro)
-- OU Admins (usuarios administradores)
+- Creación de un nuevo bosque de Active Directory.
+- Diseño de la estructura organizativa mediante OU.
+- Creación y gestión de usuarios y grupos de seguridad.
+- Configuración de DNS integrado.
 
-### 5.2 Grupos de seguridad
+### Gestión de equipos
 
-- Alumnes (tipo Seguridad, ámbito Global)
-- Professors (tipo Seguridad, ámbito Global)
-- Admins (tipo Seguridad, ámbito Global)
+- Sustitución de los equipos informáticos existentes.
+- Instalación y configuración de nuevos equipos.
+- Unión de equipos al dominio.
+- Migración a Windows 11.
 
-### 5.3 Usuarios
+### Automatización de despliegues
 
-- **Administradores:** [usuarios administradores]
-- **Alumnos:** Se crearon al inicio de curso con formato inicialApellido (ej: igarcía)
+- Configuración de MDT.
+- Configuración de WDS.
+- Captura de imagen corporativa de Windows 11.
+- Despliegue por red mediante PXE.
+- Automatización de la unión al dominio.
 
-La contraseña inicial para todos los usuarios es [CONTRASEÑA INICIAL] (el usuario debe cambiarla en el primer inicio de sesión).
+### Políticas y seguridad
 
----
+- Configuración de GPO para alumnos y profesores.
+- Restricciones de acceso a herramientas administrativas.
+- Configuración centralizada del entorno de usuario.
+- Programación de apagado automático de equipos.
 
-## 6. Directivas de Grupo (GPOs)
+### Recursos compartidos
 
-### 6.1 Default Domain Policy
+- Diseño e implementación de carpetas compartidas.
+- Configuración de permisos NTFS y SMB.
+- Mapeo automático de unidades de red mediante GPO.
+- Implementación de carpetas públicas compartidas entre equipos.
 
-Se aplica a todos los usuarios del dominio (Alumnes y Professors). Filtrado de seguridad: Usuarios autenticados (Lectura), Alumnes y Professors (Aplicar).
+### Documentación técnica
 
-- Fondo de pantalla del centro forzado (imagen en SYSVOL)
-- Imagen de pantalla de bloqueo del centro (por registro PersonalizationCSP)
-- Plan de energía: máximo rendimiento, pantalla apaga a los 15 min
-- Tarea programada: apagado automático a las 21h
-- Firewall: reglas de entrada para RDP (TCP 3389) y detección de redes (perfil Dominio)
-- Acceso RDP restringido (solo Administradores)
-- Impedir que los usuarios modifiquen configuración de seguridad
-- Filtro SmartScreen
-- Impedir cambios de aspecto
-- No permitir animaciones de ventanas
-- Ocultar carpeta Active Directory
-- Habilitar Active Desktop
-- Vaciar archivos temporales de internet al cerrar explorador
-- Telemetría desactivada
-- Editor del registro (regedit) bloqueado
-
-### 6.2 GPO_Alumnes
-
-Vinculada a OU Alumnes.
-Filtrado: grupo Alumnes.
-
-- Panel de control restringido (solo Dispositivos y Aplicaciones)
-- CMD bloqueado
-- Instalación de programas bloqueada
-- Opciones de energía bloqueadas
-- Unidad Z: mapeada automáticamente a `\\[NOMBRE-SERVIDOR]\Compartit`
-- Carpeta `C:\Public` creada y compartida en red a todos los PCs con permisos NTFS
-- Script de inicio para configurar permisos SMB de carpeta Public (Todos: Cambiar)
-- No mostrar centro de bienvenida
-
-### 6.3 GPO_Prof
-
-Vinculada a OU Profs. Sin restricciones adicionales. Incluye:
-
-- Unidad P: mapeada automáticamente a `\\[NOMBRE-SERVIDOR]\Compartit\Professors`
+- Informe de infraestructura para dirección.
+- Manual técnico del entorno.
+- Procedimientos de administración.
+- Guía para futuros técnicos del centro.
 
 ---
 
-## 7. Carpetas compartidas en el servidor
+## Arquitectura
 
-Ruta base: `C:\Compartit` (compartida como `\\[NOMBRE-SERVIDOR]\Compartit`)
+```
+Windows Server 2022
 
-### `\Professors`
+├── Active Directory
 
-Espacio donde cada profesor organiza y comparte su material con los alumnos: enunciados, presentaciones, apuntes, etc. Los alumnos solo pueden leer y descargar, no pueden modificar ni borrar nada.
+├── DNS
 
-- Profesores: control total
-- Alumnos: lectura
+├── GPO
 
-### `\Recursos`
+├── Carpetas compartidas
 
-Carpeta con instaladores, drivers y manuales de uso general, migrada desde un PC del aula. Solo los administradores pueden añadir o modificar contenido. El resto de usuarios pueden acceder para consultar o descargar lo que necesiten.
+├── MDT
 
-- Todos: lectura
-- Admins: control total
-- Contiene instalables y manuales
+└── WDS
 
-### `\Entrega`
+      │
 
-Carpeta de entrega de trabajos y actividades. Los alumnos pueden subir sus archivos, pero no pueden leer ni modificar archivos. Los profesores tienen acceso completo para revisar y corregir todo el contenido.
+      ├── Equipos de alumnos
 
-- Alumnos: escritura sin lectura de archivos
-- Profesores: control total
+      ├── Equipos de profesorado
 
-### Carpeta Public en cada PC
+      └── Equipos administrativos
+```
 
-Cada PC de alumno del dominio tiene `C:\Public` compartida como `\\nombrePC\Public`. Esta carpeta es para que los alumnos puedan compartir archivos entre ellos por la red.
 
-- Usuarios autenticados: lectura, escritura, sin eliminar
-- CREATOR OWNER: control total (cada usuario puede eliminar solo sus propios archivos)
-- Administradores y SYSTEM: control total
+---
+## Competencias adquiridas
+
+- Administración de Windows Server.
+- Diseño y gestión de Active Directory.
+- Despliegue masivo de equipos.
+- Automatización con PowerShell.
+- Gestión de permisos y recursos compartidos.
+- Resolución de incidencias en entornos de producción.
+- Elaboración de documentación técnica profesional.
 
 ---
 
-## 8. Unión de PCs al dominio
+## Aviso
 
-Se creó un script PowerShell para automatizar el proceso en cada PC. Este hace:
+Este repositorio muestra una versión pública del proyecto.
 
-- Configuración DNS (principal: [IP del servidor], secundario: [IP DNS secundario])
-- Unión al dominio [DOMINIO] con credenciales de Administrador
-- Reinicio automático a los 10 segundos
+Se han eliminado nombres de usuarios, direcciones IP, credenciales, nombres de equipos y cualquier otro dato sensible o identificativo.
