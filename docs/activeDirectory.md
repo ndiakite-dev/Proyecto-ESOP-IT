@@ -6,7 +6,6 @@ Se implementó una infraestructura Active Directory basada en Windows Server 202
 
 El dominio permite administrar de forma unificada los ordenadores de aulas, profesorado y personal administrativo.
 
----
 
 ## Objetivos
 
@@ -16,7 +15,6 @@ El dominio permite administrar de forma unificada los ordenadores de aulas, prof
 - Gestionar recursos compartidos de forma centralizada.
 - Facilitar el despliegue y mantenimiento de nuevos equipos.
 
----
 
 ## Dominio
 
@@ -27,7 +25,6 @@ El dominio permite administrar de forma unificada los ordenadores de aulas, prof
     - DNS
     - Group Policy Management
 
----
 
 ## Estructura organizativa
 
@@ -49,7 +46,6 @@ DOMINIO
 | Professors | Usuarios de profesorado     |
 | Admins     | Administradores del sistema |
 
----
 
 ## Grupos de seguridad
 
@@ -63,7 +59,6 @@ Se crearon grupos de seguridad para simplificar la asignación de permisos.
 
 La asignación de permisos se realizó mediante pertenencia a grupo, evitando configuraciones individuales por usuario.
 
----
 
 ## Gestión de usuarios
 
@@ -87,7 +82,6 @@ Los usuarios se organizan según su rol dentro del centro.
 - Administración de equipos.
 - Gestión de recursos compartidos y políticas.
 
----
 
 ## Integración con GPO
 
@@ -114,7 +108,6 @@ Las Unidades Organizativas se utilizaron para aplicar políticas específicas se
 - Configuración de energía.
 - Seguridad del sistema.
 
----
 
 ## Integración con recursos compartidos
 
@@ -122,7 +115,6 @@ Active Directory se utilizó para controlar el acceso a las carpetas compartidas
 
 La autenticación se realiza mediante credenciales de dominio y los permisos dependen de los grupos de seguridad asignados a cada usuario.
 
----
 
 ## Resultado
 

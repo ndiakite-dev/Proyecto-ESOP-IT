@@ -6,7 +6,6 @@ Se diseñó una estructura de recursos compartidos para facilitar la colaboraci�
 
 Todas las carpetas utilizan permisos NTFS y SMB basados en grupos de Active Directory.
 
----
 
 ## Objetivos
 
@@ -15,7 +14,6 @@ Todas las carpetas utilizan permisos NTFS y SMB basados en grupos de Active Dire
 - Facilitar la entrega de trabajos.
 - Centralizar documentación y recursos.
 
----
 
 ## Estructura
 
@@ -27,7 +25,6 @@ Compartido
 └── Entrega
 ```
 
----
 
 ## Professors
 
@@ -43,8 +40,6 @@ Profesores:
 Alumnos:
 
 - Lectura
-
----
 
 ## Recursos
 
@@ -65,7 +60,6 @@ Usuarios:
 
 - Lectura
 
----
 
 ## Entrega
 
@@ -81,7 +75,6 @@ Profesores:
 
 - Control total
 
----
 
 ## Unidades de red
 
@@ -95,7 +88,6 @@ Las unidades fueron mapeadas automáticamente mediante GPO.
 
 - Unidad P:
 
----
 
 ## Beneficios
 

@@ -6,7 +6,6 @@ Las Directivas de Grupo (GPO) se utilizaron para centralizar la configuración, 
 
 Esto permitió mantener configuraciones homogéneas y reducir tareas manuales de mantenimiento.
 
----
 
 ## Objetivos
 
@@ -16,7 +15,6 @@ Esto permitió mantener configuraciones homogéneas y reducir tareas manuales de
 - Mejorar la seguridad de los equipos.
 - Estandarizar la experiencia de usuario.
 
----
 
 ## Estructura de GPOs
 
@@ -32,7 +30,6 @@ Configuraciones globales aplicadas a todos los usuarios:
 - Restricciones de seguridad.
 - Desactivación de herramientas administrativas.
 
----
 
 ### GPO_Alumnes
 
@@ -45,7 +42,6 @@ Configuraciones específicas para alumnado:
 - Ocultación de configuraciones avanzadas.
 - Mapeo automático de unidades de red.
 
----
 
 ### GPO_Prof
 
@@ -55,7 +51,6 @@ Configuraciones específicas para profesorado:
 - Configuración corporativa común.
 - Sin restricciones adicionales.
 
----
 
 ## Resultados
 

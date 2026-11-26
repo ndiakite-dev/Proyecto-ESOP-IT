@@ -4,7 +4,6 @@
 
 Se utilizaron scripts de PowerShell para automatizar tareas de administración y despliegue dentro del dominio.
 
----
 
 ## Objetivos
 
@@ -13,7 +12,6 @@ Se utilizaron scripts de PowerShell para automatizar tareas de administración y
 - Acelerar despliegues.
 - Estandarizar configuraciones.
 
----
 
 ## Automatizaciones implementadas
 
@@ -26,19 +24,16 @@ Script encargado de:
 - Unir el equipo al dominio.
 - Reiniciar automáticamente el sistema.
 
----
 
 ### Configuración de equipos
 
 Automatización de configuraciones iniciales necesarias tras la instalación.
 
----
 
 ### Gestión de recursos compartidos
 
 Configuración automatizada de permisos y recursos de red.
 
----
 
 ## Beneficios
 

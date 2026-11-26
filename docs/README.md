@@ -18,7 +18,6 @@
 8. Unión de PCs al dominio
 9. Tareas pendientes
 
----
 
 ## 1. Hardware
 
@@ -29,7 +28,6 @@ El servidor de dominio se instaló en el rack del centro:
 - **Sistema operativo:** Windows Server 2022
 - **Nombre del servidor:** [NOMBRE-SERVIDOR]
 
----
 
 ## 2. Instalación
 
@@ -37,7 +35,6 @@ La ISO se descargó desde la página de Microsoft y la instalación se realizó 
 
 Para activarlo se usó el servicio KMS del organismo correspondiente mediante los comandos habituales en `cmd`.
 
----
 
 ## 3. Configuración de red (servidor)
 
@@ -45,7 +42,6 @@ Para activarlo se usó el servicio KMS del organismo correspondiente mediante lo
 - **Máscara:** [Máscara de red]
 - **Puerta de enlace:** [Puerta de enlace]
 
----
 
 ## 4. Active Directory Domain Services (AD DS)
 
@@ -55,7 +51,6 @@ Rol AD DS instalado desde Server Manager. Se promocionó el servidor a Domain Co
 - **Nivel funcional del bosque:** Windows Server 2016
 - **DNS integrado con AD DS** instalado automáticamente
 
----
 
 ## 5. Estructura de Active Directory
 
@@ -78,7 +73,6 @@ Rol AD DS instalado desde Server Manager. Se promocionó el servidor a Domain Co
 
 La contraseña inicial para todos los usuarios es [CONTRASEÑA INICIAL] (el usuario debe cambiarla en el primer inicio de sesión).
 
----
 
 ## 6. Directivas de Grupo (GPOs)
 
@@ -122,7 +116,6 @@ Vinculada a OU Profs. Sin restricciones adicionales. Incluye:
 
 - Unidad P: mapeada automáticamente a `\\[NOMBRE-SERVIDOR]\Compartit\Professors`
 
----
 
 ## 7. Carpetas compartidas en el servidor
 
@@ -158,7 +151,6 @@ Cada PC de alumno del dominio tiene `C:\Public` compartida como `\\nombrePC\Publ
 - CREATOR OWNER: control total (cada usuario puede eliminar solo sus propios archivos)
 - Administradores y SYSTEM: control total
 
----
 
 ## 8. Unión de PCs al dominio
 
