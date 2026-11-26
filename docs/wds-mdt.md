@@ -69,10 +69,6 @@ Una vez finalizada la instalación:
 - Configuración de DNS.
 - Unión automática al dominio.
 - Reinicio del equipo.
-## Limitaciones detectadas
-- MDT dejó de recibir soporte oficial por parte de Microsoft.
-- Problemas puntuales con multicast en WDS.
-- Dependencia del hardware de red del servidor.
 ## Resultado
 - Instalaciones homogéneas.
 - Reducción del tiempo de despliegue.
