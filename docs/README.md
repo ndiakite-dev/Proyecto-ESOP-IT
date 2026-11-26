@@ -19,21 +19,20 @@
 9. Tareas pendientes
 
 
-## 1. Hardware
+- [Active Directory](activeDirectory.md)
+- [Servidor](servidor.md)
 
 El servidor de dominio se instaló en el rack del centro:
 
-- **Ubicación:** Rack del aula de servidores
-- **IP fija asignada:** [IP del servidor]
-- **Sistema operativo:** Windows Server 2022
-- **Nombre del servidor:** [NOMBRE-SERVIDOR]
+- [Directivas de Grupo (GPO)](gpos.md)
+- [Carpetas compartidas y permisos](carpetasCompartidas.md)
 
 
-## 2. Instalación
+- [Captura y despliegue de Windows 11 con MDT/WDS](wds-mdt.md)
 
 La ISO se descargó desde la página de Microsoft y la instalación se realizó desde Windows ejecutando `setup.exe`.
 
-Para activarlo se usó el servicio KMS del organismo correspondiente mediante los comandos habituales en `cmd`.
+- [PowerShell y automatización](automatizaciones.md)
 
 
 ## 3. Configuración de red (servidor)
@@ -47,7 +46,7 @@ Para activarlo se usó el servicio KMS del organismo correspondiente mediante lo
 
 Rol AD DS instalado desde Server Manager. Se promocionó el servidor a Domain Controller creando un nuevo bosque:
 
-- **Nombre del dominio:** [DOMINIO]
+- **Nombre del dominio:** esop.local
 - **Nivel funcional del bosque:** Windows Server 2016
 - **DNS integrado con AD DS** instalado automáticamente
 

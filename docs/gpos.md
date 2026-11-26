@@ -54,7 +54,13 @@ Configuraciones específicas para profesorado:
 
 ## Resultados
 
-- Gestión centralizada de equipos.
+- Asignación automática de unidades de red según el perfil del usuario.
+- Creación de recursos compartidos en los equipos del alumnado.
+- Configuración automática de permisos SMB.
+- Aplicación centralizada de restricciones de seguridad.
+## Beneficios
+
+- Gestión centralizada.
 - Mayor seguridad.
 - Menor intervención manual.
 - Reducción de incidencias provocadas por modificaciones de usuarios.
