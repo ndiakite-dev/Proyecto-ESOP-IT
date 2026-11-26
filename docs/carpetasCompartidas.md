@@ -1,97 +1,118 @@
-# Carpetas compartidas y gestión de permisos
+# Carpetas compartidas
 
-## Resumen
+## Descripción
 
-Se diseñó una estructura de recursos compartidos para facilitar la colaboración entre profesorado y alumnado.
+Se diseñó una estructura de almacenamiento centralizada para organizar documentación, materiales docentes y entregas de alumnado.
 
-Todas las carpetas utilizan permisos NTFS y SMB basados en grupos de Active Directory.
-
-
-## Objetivos
-
-- Compartir recursos de forma segura.
-- Segregar permisos según perfiles.
-- Facilitar la entrega de trabajos.
-- Centralizar documentación y recursos.
-
+El acceso se controla mediante permisos NTFS y grupos de Active Directory.
 
 ## Estructura
 
 ```text
-Compartido
+Compartit
 │
 ├── Professors
 ├── Recursos
-└── Entrega
+└── Entregas
 ```
-
 
 ## Professors
 
-Repositorio para material docente.
+Repositorio de trabajo del profesorado.
 
+Se utiliza para almacenar:
+
+- Apuntes
+- Presentaciones
+- Ejercicios
+- Material de aula
 ### Permisos
 
-Profesores:
+|Grupo|Permiso|
+|---|---|
+|Professors|Control total|
+|Alumnes|Lectura|
 
-- Lectura
-- Escritura
-
-Alumnos:
-
-- Lectura
-
+Los alumnos pueden consultar y descargar contenido, pero no modificarlo.
 ## Recursos
 
-Almacenamiento de:
+Repositorio común para software y documentación técnica.
+
+Contiene:
 
 - Instaladores
 - Drivers
 - Manuales
-- Documentación técnica
+- Utilidades técnicas
+
+Parte del contenido fue migrado desde equipos existentes del centro.
 
 ### Permisos
 
-Administradores:
+|Grupo|Permiso|
+|---|---|
+|Admins|Control total|
+|Usuarios|Lectura|
 
-- Control total
+## Entregas
 
-Usuarios:
-
-- Lectura
-
-
-## Entrega
-
-Espacio destinado a la entrega de trabajos.
+Espacio destinado a la entrega de actividades y trabajos.
 
 ### Permisos
 
-Alumnos:
+|Grupo|Permiso|
+|---|---|
+|Alumnes|Escritura|
+|Professors|Control total|
 
-- Escritura
+El alumnado puede subir contenido sin acceder a los archivos de otros usuarios.
 
-Profesores:
+## Carpetas públicas de aula
 
-- Control total
+Además de los recursos centralizados del servidor, cada equipo del alumnado dispone de una carpeta local compartida.
 
+```text
+C:\Public
+```
 
-## Unidades de red
+Compartida en red como:
 
-Las unidades fueron mapeadas automáticamente mediante GPO.
+```text
+\\nombrePC\Public
+```
 
+Su objetivo es facilitar el intercambio de archivos entre equipos dentro de la red local.
+
+### Permisos
+
+| Grupo                 | Permiso                              |
+| --------------------- | ------------------------------------ |
+| Usuarios autenticados | Lectura y escritura                  |
+| CREATOR OWNER         | Control total sobre archivos propios |
+| Administradores       | Control total                        |
+| SYSTEM                | Control total                        |
+
+## Mapeo automático de unidades
+
+La asignación de recursos se realiza automáticamente mediante GPO.
 ### Alumnado
 
-- Unidad Z:
+```text
+Z:
+```
 
+Unidad compartida general del centro.
 ### Profesorado
 
-- Unidad P:
+```text
+P:
+```
 
+Acceso directo al repositorio de material docente.
 
-## Beneficios
+## Resultado
 
 - Gestión centralizada de recursos.
-- Mayor organización.
-- Control de acceso por rol.
-- Entorno colaborativo simplificado.
+- Permisos diferenciados por perfil.
+- Compartición segura de archivos.
+- Entorno homogéneo para alumnado y profesorado.

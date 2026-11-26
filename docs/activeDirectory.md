@@ -1,127 +1,90 @@
 # Active Directory
 
-## Resumen
+## Descripción
+Para centralizar la gestión de usuarios, equipos y permisos del centro se implementó una infraestructura basada en Active Directory Domain Services (AD DS) sobre Windows Server 2022.
 
-Se implementó una infraestructura Active Directory basada en Windows Server 2022 para centralizar la gestión de usuarios, equipos y permisos del centro.
+El servidor actúa como Controlador de Dominio y proporciona servicios de autenticación, resolución DNS y aplicación de políticas de grupo.
 
-El dominio permite administrar de forma unificada los ordenadores de aulas, profesorado y personal administrativo.
-
-
-## Objetivos
-
-- Centralizar la gestión de usuarios.
-- Simplificar la administración de equipos.
-- Aplicar políticas de seguridad mediante GPO.
-- Gestionar recursos compartidos de forma centralizada.
-- Facilitar el despliegue y mantenimiento de nuevos equipos.
-
-
-## Dominio
-
-- Tipo: Nuevo bosque Active Directory
+## Configuración del dominio
 - Sistema operativo: Windows Server 2022
-- Servicios instalados:
-    - Active Directory Domain Services (AD DS)
-    - DNS
-    - Group Policy Management
-
+- Rol instalado: Active Directory Domain Services (AD DS)
+- DNS integrado con Active Directory
+- Nivel funcional del bosque: Windows Server 2016
+- Tipo de implementación: Nuevo bosque
 
 ## Estructura organizativa
 
-### Unidades Organizativas (OU)
+Se diseñó una estructura sencilla basada en roles para facilitar la administración y la aplicación de GPO.
 
 ```text
 DOMINIO
 │
-├── Alumnes
-├── Professors
-└── Admins
+├── OU_Alumnes
+├── OU_Professors
+└── OU_Admins
 ```
 
-### Objetivo de cada OU
+### OU_Alumnes
+Contiene todas las cuentas de alumnado.
 
-| OU         | Función                     |
-| ---------- | --------------------------- |
-| Alumnes    | Usuarios de alumnado        |
-| Professors | Usuarios de profesorado     |
-| Admins     | Administradores del sistema |
+### OU_Professors
+Contiene todas las cuentas de profesorado.
 
+### OU_Admins
+Contiene las cuentas con privilegios administrativos.
 
 ## Grupos de seguridad
+Los permisos se asignan mediante grupos de Active Directory para simplificar la administración.
 
-Se crearon grupos de seguridad para simplificar la asignación de permisos.
+### Alumnes
+Grupo utilizado para:
 
-### Grupos principales
+- Aplicación de GPO del alumnado
+- Acceso a carpetas compartidas
+- Asignación de recursos de red
 
-- Alumnes
-- Professors
-- Admins
+### Professors
+Grupo utilizado para:
 
-La asignación de permisos se realizó mediante pertenencia a grupo, evitando configuraciones individuales por usuario.
+- Aplicación de GPO de profesorado
+- Acceso a recursos docentes
 
+### Admins
+Grupo utilizado para:
+
+- Administración del dominio
+- Gestión de servidores
+- Gestión de recursos compartidos
 
 ## Gestión de usuarios
-
-Los usuarios se organizan según su rol dentro del centro.
-
-### Profesorado
-
-- Acceso a recursos docentes.
-- Acceso a carpeta compartida de profesores.
-- Sin restricciones especiales.
+Los usuarios se organizan según su función dentro del centro.
 
 ### Alumnado
+- Cuenta individual por alumno.
+- Cambio obligatorio de contraseña en el primer inicio de sesión.
 
-- Restricciones mediante GPO.
-- Acceso limitado a configuración del sistema.
-- Acceso a recursos compartidos necesarios para las actividades académicas.
+### Profesorado
+- Acceso a recursos de docencia.
+- Acceso a unidades compartidas específicas.
 
 ### Administradores
+- Acceso completo a la infraestructura.
 
-- Gestión completa del dominio.
-- Administración de equipos.
-- Gestión de recursos compartidos y políticas.
+## Integración con otros servicios
+Active Directory se integra con:
 
+- DNS
+- GPO
+- MDT
+- WDS
+- Recursos compartidos SMB
 
-## Integración con GPO
-
-Las Unidades Organizativas se utilizaron para aplicar políticas específicas según el perfil del usuario.
-
-### Políticas aplicadas
-
-#### Alumnes
-
-- Bloqueo de CMD.
-- Restricción de instalación de software.
-- Limitación del Panel de Control.
-- Mapeo automático de unidades de red.
-
-#### Professors
-
-- Acceso a recursos compartidos del profesorado.
-- Configuración corporativa común.
-
-#### Globales
-
-- Fondo corporativo.
-- Apagado automático de equipos.
-- Configuración de energía.
-- Seguridad del sistema.
-
-
-## Integración con recursos compartidos
-
-Active Directory se utilizó para controlar el acceso a las carpetas compartidas del servidor.
-
-La autenticación se realiza mediante credenciales de dominio y los permisos dependen de los grupos de seguridad asignados a cada usuario.
-
+permitiendo una administración centralizada de toda la infraestructura.
 
 ## Resultado
+La implantación del dominio permitió:
 
-La implantación de Active Directory permitió:
-
-- Administración centralizada de usuarios y equipos.
-- Aplicación uniforme de políticas de seguridad.
-- Gestión simplificada de permisos.
-- Integración con MDT y WDS para despliegues automatizados.
-- Reducción del tiempo de mantenimiento de los equipos.
+- Centralizar usuarios y equipos.
+- Gestionar permisos desde un único punto.
+- Simplificar el mantenimiento.
+- Facilitar el despliegue automatizado de nuevos equipos.

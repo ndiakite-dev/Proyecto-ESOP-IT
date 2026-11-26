@@ -1,43 +1,37 @@
-# Automatizaciones con PowerShell
+# Automatización con PowerShell
 
-## Resumen
+## Descripción
+Para reducir tareas repetitivas y acelerar los despliegues se desarrollaron diversos scripts de automatización mediante PowerShell.
 
-Se utilizaron scripts de PowerShell para automatizar tareas de administración y despliegue dentro del dominio.
+## Unión automática al dominio
+Se creó un script específico para automatizar la incorporación de nuevos equipos al dominio.
 
+### Funciones
+- Configuración automática de DNS.
+- Unión al dominio.
+- Reinicio automático del sistema.
 
-## Objetivos
-
-- Reducir tareas repetitivas.
-- Minimizar errores humanos.
-- Acelerar despliegues.
-- Estandarizar configuraciones.
-
-
-## Automatizaciones implementadas
-
-### Unión al dominio
-
-Script encargado de:
-
-- Configurar DNS.
-- Validar conectividad.
-- Unir el equipo al dominio.
-- Reiniciar automáticamente el sistema.
-
-
-### Configuración de equipos
-
-Automatización de configuraciones iniciales necesarias tras la instalación.
-
-
-### Gestión de recursos compartidos
-
-Configuración automatizada de permisos y recursos de red.
-
+### Flujo
+```text
+Configurar DNS
+        │
+        ▼
+Unir al dominio
+        │
+        ▼
+Reinicio automático
+```
 
 ## Beneficios
 
-- Menos tiempo de configuración manual.
-- Menor riesgo de errores.
-- Mayor consistencia entre equipos.
+- Menor tiempo de configuración.
+- Reducción de errores manuales.
 - Despliegues más rápidos.
+- Configuración consistente.
+
+## Consideraciones de seguridad
+Las versiones públicas de los scripts han sido modificadas para eliminar:
+
+- Direcciones IP.
+- Credenciales.
+- Información sensible de infraestructura.
